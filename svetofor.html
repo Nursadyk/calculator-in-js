@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        display: grid;
+        grid-template-columns: repeat(5, 100px);
+        grid-template-rows: repeat(5, 100px);
+        gap: 5px;
+      }
+      .result {
+        width: 35.6%;
+        margin-bottom: 20px;
+        padding: 20px;
+        border: none;
+        box-shadow: 0px 0px 5px #000;
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" class="result" />
+    <div class="container">
+      <button class="clear">C</button>
+      <button class="sum">0</button>
+      <button class="sum">1</button>
+      <button class="sum">2</button>
+      <button class="sum">3</button>
+      <button class="sum">4</button>
+      <button class="sum">5</button>
+      <button class="sum">6</button>
+      <button class="sum">7</button>
+      <button class="sum">8</button>
+      <button class="sum">9</button>
+      <button class="plusBtn">+</button>
+      <button class="minusBtn">-</button>
+      <button class="multiplyBtn">*</button>
+      <button class="deviceBtn">/</button>
+      <button class="equal">=</button>
+    </div>
+    <script>
+      const resultInput = document.querySelector(".result");
+      const clear = document.querySelector(".clear");
+      const sum = document.querySelectorAll(".sum");
+      const equal = document.querySelector(".equal");
+      const plusBtn = document.querySelector(".plusBtn");
+      const minusBtn = document.querySelector(".minusBtn");
+      const multiplyBtn = document.querySelector(".multiplyBtn");
+      const deviceBtn = document.querySelector(".deviceBtn");
+      let onclickRes = "";
+      let result = "";
+      sum.forEach((el) => {
+        el.addEventListener("click", () => {
+          result += el.textContent;
+        });
+      });
+      let keep = "";
+      clear.addEventListener("click", () => {
+        resultInput.value = "";
+      });
+      plusBtn.addEventListener("click", () => {
+        keep = result;
+        result = "";
+        onclickRes = "+";
+      });
+      minusBtn.addEventListener("click", () => {
+        keep = result;
+        result = "";
+        onclickRes = "-";
+      });
+      multiplyBtn.addEventListener("click", () => {
+        keep = result;
+        result = "";
+        onclickRes = "*";
+      });
+      deviceBtn.addEventListener("click", () => {
+        keep = result;
+        result = "";
+        onclickRes = "/";
+      });
+      equal.addEventListener("click", () => {
+        if (onclickRes == "+") {
+          const lastRes = Number(result);
+          resultInput.value = Number(keep) + lastRes;
+        } else if (onclickRes == "-") {
+          const lastRes = Number(result);
+          resultInput.value = Number(keep) - lastRes;
+        } else if (onclickRes == "*") {
+          const lastRes = Number(result);
+          resultInput.value = Number(keep) * lastRes;
+        } else if (onclickRes == "/") {
+          const lastRes = Number(result);
+          resultInput.value = Number(keep) / lastRes;
+        }
+      });
+    </script>
+  </body>
+</html>
